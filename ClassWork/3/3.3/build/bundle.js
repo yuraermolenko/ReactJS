@@ -55,19 +55,25 @@
 	
 	    getInitialState: function () {
 	        return {
-	            counter: 1
+	            counter: 0
 	        };
 	    },
 	
 	    count: function () {
 	        this.setState({ counter: this.state.counter + 1 });
 	    },
+	    startWatch: function () {
 	
+	        this.timer = setInterval(this.count, 1000);
+	    },
+	    stopWatch: function () {
+	        if (this.timer) clearInterval(this.timer);
+	    },
+	    resetWatch: function () {
+	        if (this.timer) clearInterval(this.timer);
+	        this.setState({ counter: 0 });
+	    },
 	    render: function () {
-	
-	        if (!this.timer) {
-	            this.timer = setInterval(this.count, 1000);
-	        }
 	
 	        return React.createElement(
 	            'div',
