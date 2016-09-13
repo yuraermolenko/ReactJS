@@ -42,27 +42,67 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/*!**************************************!*\
-  !*** ./ClassWork/1/1.3/jsx/main.jsx ***!
-  \**************************************/
+/*!*************************************!*\
+  !*** ./HomeWork/2/2.1/jsx/main.jsx ***!
+  \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(/*! react */ 1);
 	var ReactDOM = __webpack_require__(/*! react-dom */ 34);
-	var Element = React.createClass({
-	    displayName: 'Element',
 	
+	var ListParent = React.createClass({
+	    displayName: 'ListParent',
+	
+	    getInitialState: function () {
+	        return {
+	            inputVal: 10
+	        };
+	    },
+	    getDefaultProps: function () {
+	
+	        return {
+	            users: [{ name: "Anne Montgomery", gender: "Female" }, { name: "Annie George", gender: "Female" }, { name: "Gary Butler", gender: "Male" }, { name: "Lisa Mendoza", gender: "Female" }, { name: "Marilyn Henry", gender: "Female" }, { name: "Johnny Tucker", gender: "Male" }, { name: "Chris Jacobs", gender: "Male" }, { name: "Benjamin James", gender: "Male" }]
+	        };
+	    },
+	    handlerChangeInput: function (e) {
+	        this.setState({ inputVal: e.target.value });
+	    },
 	    render: function () {
-	        var result = parseInt(this.props.prop1) + parseInt(this.props.prop2);
+	        var number = this.state.inputVal;
 	        return React.createElement(
-	            'h1',
+	            'div',
 	            null,
-	            result
+	            React.createElement('input', { type: 'text', placeholder: 'Enter the number of items', onChange: this.handlerChangeInput }),
+	            React.createElement(
+	                'ul',
+	                null,
+	                this.props.users.map(function (item, index) {
+	                    if (index <= number - 1) return React.createElement(ListChild, { key: index, userName: item.name, userGender: item.gender });
+	                })
+	            )
 	        );
 	    }
 	});
+	var ListChild = React.createClass({
+	    displayName: 'ListChild',
+	
+	    render: function () {
+	        return React.createElement(
+	            'li',
+	            null,
+	            this.props.userName,
+	            ' : ',
+	            this.props.userGender
+	        );
+	    }
+	});
+	
 	var container = document.getElementById('example');
-	ReactDOM.render(React.createElement(Element, { prop1: '5', prop2: '4' }), container);
+	ReactDOM.render(React.createElement(
+	    ListParent,
+	    null,
+	    React.createElement(ListChild, null)
+	), container);
 
 /***/ },
 /* 1 */

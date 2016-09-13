@@ -1,4 +1,5 @@
-﻿"use strict";
+﻿/// <binding BeforeBuild='Watch - Development' />
+"use strict";
 
 module.exports = {
     entry: {
@@ -11,9 +12,9 @@ module.exports = {
        "ClassWork/2/2.1/build/bundle": "./ClassWork/2/2.1/jsx/main.jsx",
         "ClassWork/2/2.2/build/bundle": "./ClassWork/2/2.2/jsx/main.jsx",
         "ClassWork/2/2.3/build/bundle": "./ClassWork/2/2.3/jsx/main.jsx",
-        //"HomeWork/2/2.1/build/bundle": "./HomeWork/2/2.1/jsx/main.jsx",
-        //"HomeWork/2/2.2/build/bundle": "./HomeWork/2/2.2/jsx/main.jsx",
-        //"HomeWork/2/2.3/build/bundle": "./HomeWork/2/2.3/jsx/main.jsx"
+        "HomeWork/2/2.1/build/bundle": "./HomeWork/2/2.1/jsx/main.jsx",
+        "HomeWork/2/2.2/build/bundle": "./HomeWork/2/2.2/jsx/main.jsx",
+        "HomeWork/2/2.3/build/bundle": "./HomeWork/2/2.3/jsx/main.jsx"
     },
     output: {
         filename: "[name].js"
