@@ -49,6 +49,43 @@
 
 	var React = __webpack_require__(/*! react */ 1);
 	var ReactDOM = __webpack_require__(/*! react-dom */ 34);
+	var Element = React.createClass({
+	    displayName: 'Element',
+	
+	    getInitialState: function () {
+	        return {
+	            toggleStyle: true
+	        };
+	    },
+	    getDefaultProps: function () {
+	        return {
+	            style1: {
+	                "backgroundColor": "green",
+	                "width": "100px",
+	                "height": "100px",
+	                "borderRadius": "50%"
+	            },
+	            style2: {
+	                "backgroundColor": "blue",
+	                "width": "150px",
+	                "height": "100px"
+	            }
+	        };
+	    },
+	    changeStyle: function () {
+	        this.setState({ toggleStyle: !this.state.toggleStyle });
+	    },
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            null,
+	            React.createElement('div', { style: this.state.toggleStyle ? this.props.style2 : this.props.style1 }),
+	            React.createElement('input', { type: 'checkbox', defaultChecked: this.state.toggleStyle, onChange: this.changeStyle })
+	        );
+	    }
+	});
+	var container = document.getElementById("example");
+	ReactDOM.render(React.createElement(Element, null), container);
 
 /***/ },
 /* 1 */
