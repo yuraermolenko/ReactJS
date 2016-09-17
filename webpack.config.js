@@ -20,7 +20,7 @@ module.exports = {
         "ClassWork/3/3.3/build/bundle": "./ClassWork/3/3.3/jsx/main.jsx",
         "HomeWork/3/3.1/build/bundle": "./HomeWork/3/3.1/jsx/main.jsx",
         "HomeWork/3/3.2/build/bundle": "./HomeWork/3/3.2/jsx/main.jsx",
-        //"HomeWork/3/3.3/build/bundle": "./HomeWork/3/3.3/jsx/main.jsx"
+        "HomeWork/3/3.3/build/bundle": "./HomeWork/3/3.3/jsx/main.jsx"
     },
     output: {
         filename: "[name].js"

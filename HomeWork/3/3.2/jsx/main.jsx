@@ -56,12 +56,13 @@ var Calculate = React.createClass({
             <div>
     <input type="text" placeholder="Enter the first number" onInput={this.inputA } />
     <input type="text" placeholder="Enter the first number" onInput={this.inputB } />
+     <p>{this.state.inputError}</p>
     <button data-value="+" onClick={this.calc }>+</button>
     <button data-value="-" onClick={this.calc }>-</button>
     <button data-value="/" onClick={this.calc }>/</button>
     <button data-value="*" onClick={this.calc }>*</button>
     <p>{this.state.result}</p>
-    <p>{this.state.inputError}</p></div>)
+   </div>)
     }
 });
 var container = document.getElementById('example');

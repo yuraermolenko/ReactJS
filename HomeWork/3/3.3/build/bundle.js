@@ -43,104 +43,96 @@
 /******/ ([
 /* 0 */
 /*!*************************************!*\
-  !*** ./HomeWork/3/3.2/jsx/main.jsx ***!
+  !*** ./HomeWork/3/3.3/jsx/main.jsx ***!
   \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(/*! react */ 1);
 	var ReactDOM = __webpack_require__(/*! react-dom */ 34);
-	var Calculate = React.createClass({
-	    displayName: 'Calculate',
+	var Form = React.createClass({
+	    displayName: 'Form',
+	
 	
 	    getInitialState: function () {
 	        return {
-	            a: 0,
-	            b: 0,
-	            result: 0,
-	            inputError: ''
+	
+	            nameErr: '',
+	            emailErr: '',
+	            phoneErr: ''
 	        };
 	    },
-	    inputA: function (e) {
-	        var testVal = /^[0-9]/;
-	        this.setState({ a: e.target.value });
-	        if (document.getElementsByTagName('input')[0].value.search(testVal) != -1 && document.getElementsByTagName('input')[1].value.search(testVal) != -1) {
-	            this.setState({ inputError: '' });
-	        };
-	    },
-	    inputB: function (e) {
-	        var testVal = /^[0-9]/;
-	        this.setState({ b: e.target.value });
-	        if (document.getElementsByTagName('input')[0].value.search(testVal) != -1 && document.getElementsByTagName('input')[1].value.search(testVal) != -1) {
-	            this.setState({ inputError: '' });
-	        };
-	    },
-	    calc: function (e) {
-	        var testVal = /^[0-9]{1,10}$/;
-	        if (document.getElementsByTagName('input')[0].value.search(testVal) == -1) {
-	            this.setState({ inputError: 'only 1 to 10 numbers allowed!' });
-	            return;
-	        };
-	        if (document.getElementsByTagName('input')[1].value.search(testVal) == -1) {
-	            this.setState({ inputError: 'only 1 to 10 numbers allowed!' });
-	            return;
-	        };
-	        var arg = e.target.dataset.value;
-	        switch (arg) {
-	            case "+":
-	                this.setState({ result: parseInt(this.state.a) + parseInt(this.state.b) });
-	                break;
-	            case "-":
-	                this.setState({ result: parseInt(this.state.a) - parseInt(this.state.b) });
-	                break;
-	            case "/":
-	                this.setState({ result: parseInt(this.state.a) / parseInt(this.state.b) });
-	                break;
-	            case "*":
-	                this.setState({ result: parseInt(this.state.a) * parseInt(this.state.b) });
-	                break;
+	    nameChange: function (e) {
+	        var testVal = /^\w/;
+	
+	        if (document.getElementsByTagName('input')[0].value.search(testVal) != -1) {
+	            this.setState({ nameErr: '' });
 	        }
+	    },
+	    emailChange: function (e) {
+	        var test = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]$/;
+	
+	        if (document.getElementsByTagName('input')[1].value.search(test) != -1) {
+	            this.setState({ emailErr: '' });
+	        }
+	    },
+	    phoneChange: function (e) {
+	        var test = /^[0-9]+/;
+	
+	        if (document.getElementsByTagName('input')[2].value.search(test) != -1) {
+	            this.setState({ phoneErr: '' });
+	        }
+	    },
+	    validateForm: function (e) {
+	        var nameTest = /^\w+$/;
+	        var emailTest = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]+$/;
+	        var phoneTest = /^[0-9]+$/;
+	        if (document.getElementsByTagName('input')[0].value.search(nameTest) == -1) {
+	            e.preventDefault();
+	            this.setState({ nameErr: 'only english characters allowed!' });
+	        };
+	        if (document.getElementsByTagName('input')[1].value.search(emailTest) == -1) {
+	            e.preventDefault();
+	            this.setState({ emailErr: 'invalid email!' });
+	        };
+	        if (document.getElementsByTagName('input')[2].value.search(phoneTest) == -1) {
+	            e.preventDefault();
+	            this.setState({ phoneErr: 'only numbers and "+" allowed!' });
+	        };
 	    },
 	    render: function () {
 	        return React.createElement(
 	            'div',
-	            null,
-	            React.createElement('input', { type: 'text', placeholder: 'Enter the first number', onInput: this.inputA }),
-	            React.createElement('input', { type: 'text', placeholder: 'Enter the first number', onInput: this.inputB }),
+	            { className: 'container well' },
 	            React.createElement(
-	                'p',
-	                null,
-	                this.state.inputError
-	            ),
-	            React.createElement(
-	                'button',
-	                { 'data-value': '+', onClick: this.calc },
-	                '+'
-	            ),
-	            React.createElement(
-	                'button',
-	                { 'data-value': '-', onClick: this.calc },
-	                '-'
-	            ),
-	            React.createElement(
-	                'button',
-	                { 'data-value': '/', onClick: this.calc },
-	                '/'
-	            ),
-	            React.createElement(
-	                'button',
-	                { 'data-value': '*', onClick: this.calc },
-	                '*'
-	            ),
-	            React.createElement(
-	                'p',
-	                null,
-	                this.state.result
+	                'form',
+	                { action: '#', name: 'myForm', onSubmit: this.validateForm },
+	                React.createElement('input', { onChange: this.nameChange, className: 'input-lg form-control', type: 'text', placeholder: 'Name' }),
+	                React.createElement(
+	                    'p',
+	                    { className: 'error' },
+	                    this.state.nameErr
+	                ),
+	                React.createElement('input', { onChange: this.emailChange, className: 'input-lg form-control', type: 'text', placeholder: 'Email' }),
+	                React.createElement(
+	                    'p',
+	                    { className: 'error' },
+	                    this.state.emailErr
+	                ),
+	                React.createElement('input', { onChange: this.phoneChange, className: 'input-lg form-control', type: 'text', placeholder: 'Phone' }),
+	                React.createElement(
+	                    'p',
+	                    { className: 'error' },
+	                    this.state.phoneErr
+	                ),
+	                React.createElement('textarea', { onInput: this.mesChange, placeholder: 'Your Message' }),
+	                React.createElement('input', { type: 'submit', value: 'Send!' })
 	            )
 	        );
 	    }
 	});
+	
 	var container = document.getElementById('example');
-	ReactDOM.render(React.createElement(Calculate, null), container);
+	ReactDOM.render(React.createElement(Form, null), container);
 
 /***/ },
 /* 1 */
