@@ -25,8 +25,8 @@ module.exports = {
         "ClassWork/4/4.2/build/bundle": "./ClassWork/4/4.2/jsx/main.jsx",
         "ClassWork/4/4.3/build/bundle": "./ClassWork/4/4.3/jsx/main.jsx",
         "HomeWork/4/4.1/build/bundle": "./HomeWork/4/4.1/jsx/main.jsx",
-        //"HomeWork/4/4.2/build/bundle": "./HomeWork/4/4.2/jsx/main.jsx",
-        //"HomeWork/4/4.3/build/bundle": "./HomeWork/4/4.3/jsx/main.jsx"
+        "HomeWork/4/4.2/build/bundle": "./HomeWork/4/4.2/jsx/main.jsx",
+        "HomeWork/4/4.3/build/bundle": "./HomeWork/4/4.3/jsx/main.jsx"
     },
     output: {
         filename: "[name].js"
