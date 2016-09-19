@@ -31,9 +31,15 @@ module.exports = {
         //"ClassWork/6/6.1/build/bundle": "./ClassWork/6/6.1/jsx/main.jsx",
         //"ClassWork/6/6.2/build/bundle": "./ClassWork/6/6.2/jsx/main.jsx",
         //"ClassWork/6/6.3/build/bundle": "./ClassWork/6/6.3/jsx/main.jsx",
-        "HomeWork/6/6.1/build/bundle": "./HomeWork/6/6.1/jsx/main.jsx",
-        "HomeWork/6/6.2/build/bundle": "./HomeWork/6/6.2/jsx/main.jsx",
-        "HomeWork/6/6.3/build/bundle": "./HomeWork/6/6.3/jsx/main.jsx",
+        //"HomeWork/6/6.1/build/bundle": "./HomeWork/6/6.1/jsx/main.jsx",
+        //"HomeWork/6/6.2/build/bundle": "./HomeWork/6/6.2/jsx/main.jsx",
+        //"HomeWork/6/6.3/build/bundle": "./HomeWork/6/6.3/jsx/main.jsx",
+        "ClassWork/7/7.1/build/bundle": "./ClassWork/7/7.1/src/main.jsx",
+        "ClassWork/7/7.2/build/bundle": "./ClassWork/7/7.2/src/main.jsx",
+        "ClassWork/7/7.3/build/bundle": "./ClassWork/7/7.3/src/main.jsx",
+        "HomeWork/7/7.1/build/bundle": "./HomeWork/7/7.1/src/main.jsx",
+        "HomeWork/7/7.2/build/bundle": "./HomeWork/7/7.2/src/main.jsx",
+        //"HomeWork/7/7.3/build/bundle": "./HomeWork/7/7.3/src/main.jsx",
     },
     output: {
         filename: "[name].js"
