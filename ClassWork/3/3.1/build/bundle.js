@@ -47,18 +47,20 @@
   \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
 	var React = __webpack_require__(/*! react */ 1);
 	var ReactDOM = __webpack_require__(/*! react-dom */ 34);
 	var Element = React.createClass({
 	    displayName: 'Element',
 	
-	    getInitialState: function () {
+	    getInitialState: function getInitialState() {
 	        return { classToggle: true };
 	    },
-	    changeClass: function () {
+	    changeClass: function changeClass() {
 	        this.setState({ classToggle: !this.state.classToggle });
 	    },
-	    render: function () {
+	    render: function render() {
 	        return React.createElement(
 	            'div',
 	            null,

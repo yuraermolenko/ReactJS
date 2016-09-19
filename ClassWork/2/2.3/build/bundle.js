@@ -47,17 +47,19 @@
   \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
 	var React = __webpack_require__(/*! react */ 1);
 	var ReactDOM = __webpack_require__(/*! react-dom */ 34);
 	var Element = React.createClass({
 	    displayName: 'Element',
 	
-	    getInitialState: function () {
+	    getInitialState: function getInitialState() {
 	        return {
 	            toggleStyle: true
 	        };
 	    },
-	    getDefaultProps: function () {
+	    getDefaultProps: function getDefaultProps() {
 	        return {
 	            style1: {
 	                "backgroundColor": "green",
@@ -72,10 +74,10 @@
 	            }
 	        };
 	    },
-	    changeStyle: function () {
+	    changeStyle: function changeStyle() {
 	        this.setState({ toggleStyle: !this.state.toggleStyle });
 	    },
-	    render: function () {
+	    render: function render() {
 	        return React.createElement(
 	            'div',
 	            null,

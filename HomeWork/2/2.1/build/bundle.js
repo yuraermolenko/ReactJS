@@ -47,27 +47,29 @@
   \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
 	var React = __webpack_require__(/*! react */ 1);
 	var ReactDOM = __webpack_require__(/*! react-dom */ 34);
 	
 	var ListParent = React.createClass({
 	    displayName: 'ListParent',
 	
-	    getInitialState: function () {
+	    getInitialState: function getInitialState() {
 	        return {
 	            inputVal: 10
 	        };
 	    },
-	    getDefaultProps: function () {
+	    getDefaultProps: function getDefaultProps() {
 	
 	        return {
 	            users: [{ name: "Anne Montgomery", gender: "Female" }, { name: "Annie George", gender: "Female" }, { name: "Gary Butler", gender: "Male" }, { name: "Lisa Mendoza", gender: "Female" }, { name: "Marilyn Henry", gender: "Female" }, { name: "Johnny Tucker", gender: "Male" }, { name: "Chris Jacobs", gender: "Male" }, { name: "Benjamin James", gender: "Male" }]
 	        };
 	    },
-	    handlerChangeInput: function (e) {
+	    handlerChangeInput: function handlerChangeInput(e) {
 	        this.setState({ inputVal: e.target.value });
 	    },
-	    render: function () {
+	    render: function render() {
 	        var number = this.state.inputVal;
 	        return React.createElement(
 	            'div',
@@ -86,7 +88,7 @@
 	var ListChild = React.createClass({
 	    displayName: 'ListChild',
 	
-	    render: function () {
+	    render: function render() {
 	        return React.createElement(
 	            'li',
 	            null,

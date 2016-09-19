@@ -47,12 +47,14 @@
   \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
 	var React = __webpack_require__(/*! react */ 1);
 	var ReactDOM = __webpack_require__(/*! react-dom */ 34);
 	var Parent = React.createClass({
 	    displayName: 'Parent',
 	
-	    render: function () {
+	    render: function render() {
 	        return React.createElement(
 	            'div',
 	            null,
@@ -72,7 +74,7 @@
 	var Child = React.createClass({
 	    displayName: 'Child',
 	
-	    render: function () {
+	    render: function render() {
 	        return React.createElement(
 	            'h3',
 	            null,

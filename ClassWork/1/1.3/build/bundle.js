@@ -47,12 +47,14 @@
   \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
 	var React = __webpack_require__(/*! react */ 1);
 	var ReactDOM = __webpack_require__(/*! react-dom */ 34);
 	var Element = React.createClass({
 	    displayName: 'Element',
 	
-	    render: function () {
+	    render: function render() {
 	        var result = parseInt(this.props.prop1) + parseInt(this.props.prop2);
 	        return React.createElement(
 	            'h1',

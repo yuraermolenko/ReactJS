@@ -47,13 +47,15 @@
   \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
 	var React = __webpack_require__(/*! react */ 1);
 	var ReactDOM = __webpack_require__(/*! react-dom */ 34);
 	var MyElement = React.createClass({
 	    displayName: 'MyElement',
 	
 	
-	    render: function () {
+	    render: function render() {
 	        return React.createElement(
 	            'p',
 	            { style: { "color": this.props.color, "fontSize": this.props.fontSize } },

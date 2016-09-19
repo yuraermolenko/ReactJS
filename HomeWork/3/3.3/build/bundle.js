@@ -47,13 +47,15 @@
   \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
 	var React = __webpack_require__(/*! react */ 1);
 	var ReactDOM = __webpack_require__(/*! react-dom */ 34);
 	var Form = React.createClass({
 	    displayName: 'Form',
 	
 	
-	    getInitialState: function () {
+	    getInitialState: function getInitialState() {
 	        return {
 	
 	            nameErr: '',
@@ -61,28 +63,28 @@
 	            phoneErr: ''
 	        };
 	    },
-	    nameChange: function (e) {
+	    nameChange: function nameChange(e) {
 	        var testVal = /^\w/;
 	
 	        if (document.getElementsByTagName('input')[0].value.search(testVal) != -1) {
 	            this.setState({ nameErr: '' });
 	        }
 	    },
-	    emailChange: function (e) {
+	    emailChange: function emailChange(e) {
 	        var test = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]$/;
 	
 	        if (document.getElementsByTagName('input')[1].value.search(test) != -1) {
 	            this.setState({ emailErr: '' });
 	        }
 	    },
-	    phoneChange: function (e) {
+	    phoneChange: function phoneChange(e) {
 	        var test = /^[0-9]+/;
 	
 	        if (document.getElementsByTagName('input')[2].value.search(test) != -1) {
 	            this.setState({ phoneErr: '' });
 	        }
 	    },
-	    validateForm: function (e) {
+	    validateForm: function validateForm(e) {
 	        var nameTest = /^\w+$/;
 	        var emailTest = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]+$/;
 	        var phoneTest = /^[0-9]+$/;
@@ -99,7 +101,7 @@
 	            this.setState({ phoneErr: 'only numbers and "+" allowed!' });
 	        };
 	    },
-	    render: function () {
+	    render: function render() {
 	        return React.createElement(
 	            'div',
 	            { className: 'container well' },

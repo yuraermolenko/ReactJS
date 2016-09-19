@@ -47,12 +47,14 @@
   \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
 	var React = __webpack_require__(/*! react */ 1);
 	var ReactDOM = __webpack_require__(/*! react-dom */ 34);
 	var Form = React.createClass({
 	    displayName: 'Form',
 	
-	    render: () => {
+	    render: function render() {
 	        return React.createElement(
 	            'form',
 	            null,

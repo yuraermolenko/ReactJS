@@ -47,12 +47,14 @@
   \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
 	var React = __webpack_require__(/*! react */ 1);
 	var ReactDOM = __webpack_require__(/*! react-dom */ 34);
 	var Calculate = React.createClass({
 	    displayName: 'Calculate',
 	
-	    getInitialState: function () {
+	    getInitialState: function getInitialState() {
 	        return {
 	            a: 0,
 	            b: 0,
@@ -60,21 +62,21 @@
 	            inputError: ''
 	        };
 	    },
-	    inputA: function (e) {
+	    inputA: function inputA(e) {
 	        var testVal = /^[0-9]/;
 	        this.setState({ a: e.target.value });
 	        if (document.getElementsByTagName('input')[0].value.search(testVal) != -1 && document.getElementsByTagName('input')[1].value.search(testVal) != -1) {
 	            this.setState({ inputError: '' });
 	        };
 	    },
-	    inputB: function (e) {
+	    inputB: function inputB(e) {
 	        var testVal = /^[0-9]/;
 	        this.setState({ b: e.target.value });
 	        if (document.getElementsByTagName('input')[0].value.search(testVal) != -1 && document.getElementsByTagName('input')[1].value.search(testVal) != -1) {
 	            this.setState({ inputError: '' });
 	        };
 	    },
-	    calc: function (e) {
+	    calc: function calc(e) {
 	        var testVal = /^[0-9]{1,10}$/;
 	        if (document.getElementsByTagName('input')[0].value.search(testVal) == -1) {
 	            this.setState({ inputError: 'only 1 to 10 numbers allowed!' });
@@ -100,7 +102,7 @@
 	                break;
 	        }
 	    },
-	    render: function () {
+	    render: function render() {
 	        return React.createElement(
 	            'div',
 	            null,

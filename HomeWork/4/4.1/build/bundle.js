@@ -47,22 +47,43 @@
   \*************************************/
 /***/ function(module, exports) {
 
-	class Person {
-	    constructor(firstName = "John", lastName = "Doe", age = 0, gender = "Male") {
+	"use strict";
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	var Person = function () {
+	    function Person() {
+	        var firstName = arguments.length <= 0 || arguments[0] === undefined ? "John" : arguments[0];
+	        var lastName = arguments.length <= 1 || arguments[1] === undefined ? "Doe" : arguments[1];
+	        var age = arguments.length <= 2 || arguments[2] === undefined ? 0 : arguments[2];
+	        var gender = arguments.length <= 3 || arguments[3] === undefined ? "Male" : arguments[3];
+	
+	        _classCallCheck(this, Person);
+	
 	        this.firstName = firstName;
 	        this.lastName = lastName;
 	        this.age = age;
 	        this.gender = gender;
 	    }
-	    fullName() {
-	        return `${ this.firstName } ${ this.lastName }`;
-	    }
-	    sayHi() {
-	        alert(`Hello, my name is ${ this.fullName() }`);
-	    }
-	}
 	
-	let user1 = new Person("Alastor", "Green", 35, "Male");
+	    _createClass(Person, [{
+	        key: "fullName",
+	        value: function fullName() {
+	            return this.firstName + " " + this.lastName;
+	        }
+	    }, {
+	        key: "sayHi",
+	        value: function sayHi() {
+	            alert("Hello, my name is " + this.fullName());
+	        }
+	    }]);
+	
+	    return Person;
+	}();
+	
+	var user1 = new Person("Alastor", "Green", 35, "Male");
 	user1.sayHi();
 
 /***/ }

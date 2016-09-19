@@ -47,23 +47,25 @@
   \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
 	var React = __webpack_require__(/*! react */ 1);
 	var ReactDOM = __webpack_require__(/*! react-dom */ 34);
 	var StopWatch = React.createClass({
 	    displayName: 'StopWatch',
 	
 	
-	    getInitialState: function () {
+	    getInitialState: function getInitialState() {
 	        return {
 	            counter: 1
 	        };
 	    },
 	
-	    count: function () {
+	    count: function count() {
 	        this.setState({ counter: this.state.counter + 1 });
 	    },
 	
-	    render: function () {
+	    render: function render() {
 	
 	        if (!this.timer) {
 	            this.timer = setInterval(this.count, 1000);

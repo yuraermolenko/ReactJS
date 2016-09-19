@@ -47,21 +47,23 @@
   \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
 	var React = __webpack_require__(/*! react */ 1);
 	var ReactDOM = __webpack_require__(/*! react-dom */ 34);
 	var Counter = React.createClass({
 	    displayName: 'Counter',
 	
-	    getInitialState: function () {
+	    getInitialState: function getInitialState() {
 	        return { counter: 0 };
 	    },
-	    plusCounter: function () {
+	    plusCounter: function plusCounter() {
 	        this.setState({ counter: this.state.counter + 1 });
 	    },
-	    minusCounter: function () {
+	    minusCounter: function minusCounter() {
 	        this.setState({ counter: this.state.counter - 1 });
 	    },
-	    render: function () {
+	    render: function render() {
 	        return React.createElement(
 	            'div',
 	            null,

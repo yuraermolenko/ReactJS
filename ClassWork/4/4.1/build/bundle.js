@@ -47,12 +47,17 @@
   \**************************************/
 /***/ function(module, exports) {
 
-	let options = {
+	"use strict";
+	
+	var options = {
 	    title: "Menu",
 	    width: 100,
 	    height: 200
 	};
-	let { title, width, height } = options;
+	var title = options.title;
+	var width = options.width;
+	var height = options.height;
+	
 	document.write("title: " + title + " width: " + width + " height: " + height);
 
 /***/ }

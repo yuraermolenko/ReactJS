@@ -47,97 +47,154 @@
   \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
+	var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
 	var React = __webpack_require__(/*! react */ 1);
 	var ReactDOM = __webpack_require__(/*! react-dom */ 34);
 	
-	class Person {
-	    constructor(firstName = "John", lastName = "Doe", age = 0, gender = "Male") {
+	var Person = function () {
+	    function Person() {
+	        var firstName = arguments.length <= 0 || arguments[0] === undefined ? "John" : arguments[0];
+	        var lastName = arguments.length <= 1 || arguments[1] === undefined ? "Doe" : arguments[1];
+	        var age = arguments.length <= 2 || arguments[2] === undefined ? 0 : arguments[2];
+	        var gender = arguments.length <= 3 || arguments[3] === undefined ? "Male" : arguments[3];
+	
+	        _classCallCheck(this, Person);
+	
 	        this.firstName = firstName;
 	        this.lastName = lastName;
 	        this.age = age;
 	        this.gender = gender;
 	    }
-	    fullName() {
-	        return `${ this.firstName } ${ this.lastName }`;
-	    }
-	    sayHi() {
-	        alert(`Hello, my name is ${ this.fullName() }`);
-	    }
-	}
-	class User extends Person {
-	    constructor(firstName, lastName, age, gender, signUpToDate = "01.01.1970", id) {
-	        super(firstName, lastName, age, gender);
-	        this.signUpToDate = signUpToDate;
-	        this.id = id;
-	    }
-	    fullName() {
-	        super.fullName();
-	    }
-	    sayHi() {
-	        super.sayHi();
-	    }
-	    signUpToDate(date) {}
-	}
 	
-	let user1 = new User("Alastor", "Green", 35, "Male", "10.09.2016", 123);
-	let user2 = new User("Name1", "Surnameme", 35, "Male", "11.09.2016", 1234);
-	let user3 = new User("Name2", "Green", 35, "Female", "12.09.2016", 12345);
-	let user4 = new User("Name3", "Green", 35, "Male", "13.09.2016", 123456);
-	let user5 = new User("Name4", "Green", 35, "Female", "14.09.2016", 1234567);
-	let users = [user1, user2, user3, user4, user5];
+	    _createClass(Person, [{
+	        key: 'fullName',
+	        value: function fullName() {
+	            return this.firstName + ' ' + this.lastName;
+	        }
+	    }, {
+	        key: 'sayHi',
+	        value: function sayHi() {
+	            alert('Hello, my name is ' + this.fullName());
+	        }
+	    }]);
 	
-	class Table extends React.Component {
-	    constructor(props) {
-	        super(props);
+	    return Person;
+	}();
+	
+	var User = function (_Person) {
+	    _inherits(User, _Person);
+	
+	    function User(firstName, lastName, age, gender) {
+	        var signUpToDate = arguments.length <= 4 || arguments[4] === undefined ? "01.01.1970" : arguments[4];
+	        var id = arguments[5];
+	
+	        _classCallCheck(this, User);
+	
+	        var _this = _possibleConstructorReturn(this, (User.__proto__ || Object.getPrototypeOf(User)).call(this, firstName, lastName, age, gender));
+	
+	        _this.signUpToDate = signUpToDate;
+	        _this.id = id;
+	        return _this;
 	    }
 	
-	    render() {
-	        return React.createElement(
-	            'table',
-	            null,
-	            React.createElement(
-	                'tbody',
+	    _createClass(User, [{
+	        key: 'fullName',
+	        value: function fullName() {
+	            _get(User.prototype.__proto__ || Object.getPrototypeOf(User.prototype), 'fullName', this).call(this);
+	        }
+	    }, {
+	        key: 'sayHi',
+	        value: function sayHi() {
+	            _get(User.prototype.__proto__ || Object.getPrototypeOf(User.prototype), 'sayHi', this).call(this);
+	        }
+	    }, {
+	        key: 'signUpToDate',
+	        value: function signUpToDate(date) {}
+	    }]);
+	
+	    return User;
+	}(Person);
+	
+	var user1 = new User("Alastor", "Green", 35, "Male", "10.09.2016", 123);
+	var user2 = new User("Name1", "Surnameme", 35, "Male", "11.09.2016", 1234);
+	var user3 = new User("Name2", "Green", 35, "Female", "12.09.2016", 12345);
+	var user4 = new User("Name3", "Green", 35, "Male", "13.09.2016", 123456);
+	var user5 = new User("Name4", "Green", 35, "Female", "14.09.2016", 1234567);
+	var users = [user1, user2, user3, user4, user5];
+	
+	var Table = function (_React$Component) {
+	    _inherits(Table, _React$Component);
+	
+	    function Table(props) {
+	        _classCallCheck(this, Table);
+	
+	        return _possibleConstructorReturn(this, (Table.__proto__ || Object.getPrototypeOf(Table)).call(this, props));
+	    }
+	
+	    _createClass(Table, [{
+	        key: 'render',
+	        value: function render() {
+	            return React.createElement(
+	                'table',
 	                null,
-	                users.map((user, index) => {
-	                    return React.createElement(
-	                        'tr',
-	                        { key: index },
-	                        React.createElement(
-	                            'td',
-	                            null,
-	                            user.firstName
-	                        ),
-	                        React.createElement(
-	                            'td',
-	                            null,
-	                            user.lastName
-	                        ),
-	                        React.createElement(
-	                            'td',
-	                            null,
-	                            user.age
-	                        ),
-	                        React.createElement(
-	                            'td',
-	                            null,
-	                            user.gender
-	                        ),
-	                        React.createElement(
-	                            'td',
-	                            null,
-	                            user.signUpToDate
-	                        ),
-	                        React.createElement(
-	                            'td',
-	                            null,
-	                            user.id
-	                        )
-	                    );
-	                })
-	            )
-	        );
-	    }
-	}
+	                React.createElement(
+	                    'tbody',
+	                    null,
+	                    users.map(function (user, index) {
+	                        return React.createElement(
+	                            'tr',
+	                            { key: index },
+	                            React.createElement(
+	                                'td',
+	                                null,
+	                                user.firstName
+	                            ),
+	                            React.createElement(
+	                                'td',
+	                                null,
+	                                user.lastName
+	                            ),
+	                            React.createElement(
+	                                'td',
+	                                null,
+	                                user.age
+	                            ),
+	                            React.createElement(
+	                                'td',
+	                                null,
+	                                user.gender
+	                            ),
+	                            React.createElement(
+	                                'td',
+	                                null,
+	                                user.signUpToDate
+	                            ),
+	                            React.createElement(
+	                                'td',
+	                                null,
+	                                user.id
+	                            )
+	                        );
+	                    })
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Table;
+	}(React.Component);
+	
 	var container = document.getElementById('example');
 	ReactDOM.render(React.createElement(Table, null), container);
 

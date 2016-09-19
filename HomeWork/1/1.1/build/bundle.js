@@ -47,18 +47,20 @@
   \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
 	var React = __webpack_require__(/*! react */ 1);
 	var ReactDOM = __webpack_require__(/*! react-dom */ 34);
 	
 	var Table = React.createClass({
 	    displayName: 'Table',
 	
-	    getDefaultProps: function () {
+	    getDefaultProps: function getDefaultProps() {
 	        return {
 	            users: [{ name: "Anne Montgomery", gender: "Female" }, { name: "Annie George", gender: "Female" }, { name: "Gary Butler", gender: "Male" }, { name: "Lisa Mendoza", gender: "Female" }, { name: "Marilyn Henry", gender: "Female" }, { name: "Johnny Tucker", gender: "Male" }, { name: "Chris Jacobs", gender: "Male" }, { name: "Benjamin James", gender: "Male" }]
 	        };
 	    },
-	    render: function () {
+	    render: function render() {
 	        return React.createElement(
 	            'table',
 	            null,
@@ -79,7 +81,7 @@
 	var TableRow = React.createClass({
 	    displayName: 'TableRow',
 	
-	    render: function () {
+	    render: function render() {
 	        return React.createElement(
 	            'tr',
 	            null,

@@ -47,46 +47,73 @@
   \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
 	var React = __webpack_require__(/*! react */ 1);
 	var ReactDOM = __webpack_require__(/*! react-dom */ 34);
 	
-	class ListProps extends React.Component {
-	    constructor(props) {
-	        super(props);
-	        this.state = {
+	var ListProps = function (_React$Component) {
+	    _inherits(ListProps, _React$Component);
+	
+	    function ListProps(props) {
+	        _classCallCheck(this, ListProps);
+	
+	        var _this = _possibleConstructorReturn(this, (ListProps.__proto__ || Object.getPrototypeOf(ListProps)).call(this, props));
+	
+	        _this.state = {
 	            showProps: false
 	        };
-	        this.handler = this.handler.bind(this);
-	    }
-	    handler() {
-	        this.setState({ showProps: !this.state.showProps });
-	    }
-	    render() {
-	        let props = [];
-	        for (var key in this.props) {}
+	        _this.handler = _this.handler.bind(_this);
 	
-	        return React.createElement(
-	            'div',
-	            null,
-	            React.createElement(
-	                'button',
-	                { onClick: this.handler },
-	                ' Show List'
-	            ),
-	            React.createElement(
-	                'ul',
-	                null,
-	                this.state.showProps ? Object.keys(this.props).map((prop, index) => {
-	                    return React.createElement(
-	                        'li',
-	                        { key: index },
-	                        `${ prop } = ${ this.props[prop] };`
-	                    );
-	                }) : ""
-	            )
-	        );
+	        return _this;
 	    }
-	}
+	
+	    _createClass(ListProps, [{
+	        key: 'handler',
+	        value: function handler() {
+	            this.setState({ showProps: !this.state.showProps });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+	
+	            var props = [];
+	            for (var key in this.props) {}
+	
+	            return React.createElement(
+	                'div',
+	                null,
+	                React.createElement(
+	                    'button',
+	                    { onClick: this.handler },
+	                    ' Show List'
+	                ),
+	                React.createElement(
+	                    'ul',
+	                    null,
+	                    this.state.showProps ? Object.keys(this.props).map(function (prop, index) {
+	                        return React.createElement(
+	                            'li',
+	                            { key: index },
+	                            prop + ' = ' + _this2.props[prop] + ';'
+	                        );
+	                    }) : ""
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return ListProps;
+	}(React.Component);
 	
 	var container = document.getElementById('example');
 	ReactDOM.render(React.createElement(ListProps, { a: '3', b: '4', isNumber: true }), container);

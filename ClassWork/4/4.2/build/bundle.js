@@ -47,17 +47,19 @@
   \**************************************/
 /***/ function(module, exports) {
 
+	"use strict";
+	
 	function getImage() {
 	
 	    return new Promise(function (resolve, reject) {
 	
-	        let xhr = new XMLHttpRequest();
+	        var xhr = new XMLHttpRequest();
 	        xhr.open("GET", url);
 	        xhr.responseType = "blob";
 	
-	        xhr.onload = () => {
+	        xhr.onload = function () {
 	            if (xhr.status === 200) {
-	                let img = document.createElement('img');
+	                var img = document.createElement('img');
 	                img.src = window.URL.createObjectURL(xhr.response);
 	                resolve(img);
 	            } else {
@@ -68,9 +70,9 @@
 	        xhr.send();
 	    });
 	};
-	getImage('image.jpg').then(img => {
+	getImage('image.jpg').then(function (img) {
 	    document.getElementById('example');
-	}, err => {
+	}, function (err) {
 	    console.log(err);
 	    alert(err);
 	});
