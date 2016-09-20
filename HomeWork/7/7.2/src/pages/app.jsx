@@ -4,7 +4,7 @@ var Link = require('react-router').Link;
 
 var TodoStore = require('../stores/toDoStore'); 
 
-
+var toDoActions = require('../actions/toDoActions');
 var List = require('./list.jsx'); 
 
  
@@ -19,7 +19,12 @@ class App extends React.Component {
     }
     search() {
         let string = document.getElementById('search').value;
-        TodoStore.getAll(string);
+        toDoActions.search(string);
+    }
+    componentWillMount() {
+        TodoStore.on('CHANGE_TASKS', () => {
+            this.setState({ tasks: TodoStore.getAll() })
+        })
     }
     render() {
         return(<div className="panel">

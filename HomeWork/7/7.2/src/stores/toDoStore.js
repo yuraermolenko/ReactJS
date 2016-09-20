@@ -4,7 +4,7 @@ import dispatcher from '../dispatcher'
 class ToDoStore extends EventEmitter {
     constructor() {
         super() 
-       
+        this.searchVal='';
         this.tasks = [
                 {
                     id: `${Date.now()}`, 
@@ -45,14 +45,16 @@ class ToDoStore extends EventEmitter {
         this.tasks = newData; 
     }
 
-    // получить все элементы 
-    getAll(search) {  if (search==''||search==undefined) {return this.tasks}  
+    search(string){
+        this.searchVal=string;
+    }
+    getAll() {  if (this.searchVal==''||this.search==undefined) {return this.tasks}  
     else{
-        let filteredItems = this.tasks.filter((item) => {
-            return (item.name.indexOf(search) !== -1);
+        let newData = this.tasks.filter((item) => {
+            return (item.name.indexOf(this.searchVal) !== -1);
         });
 
-        return filteredItems;
+        return newData;
     }
     } 
 
@@ -106,6 +108,12 @@ class ToDoStore extends EventEmitter {
                 console.log("Edit end") 
                 this.emit('CHANGE')
                 this.editTaskEnd(action.item); 
+                break; 
+            }
+            case "SEARCH_ITEM": {
+                this.search(action.str)
+                console.log("Searching...") 
+                this.emit('CHANGE_TASKS') 
                 break; 
             }
         }

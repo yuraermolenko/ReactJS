@@ -32,3 +32,9 @@ export function editEnd(item) {
         item
       })
 }
+export function search(str) {
+    dispatcher.dispatch({
+        type: 'SEARCH_ITEM', 
+        str
+    })
+}
