@@ -43,7 +43,7 @@
 /******/ ([
 /* 0 */
 /*!**************************************!*\
-  !*** ./ClassWork/8/8.2/src/main.jsx ***!
+  !*** ./ClassWork/8/8.3/src/main.jsx ***!
   \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
@@ -53,13 +53,23 @@
 	var ReactDOM = __webpack_require__(/*! react-dom */ 34);
 	
 	var Provider = __webpack_require__(/*! react-redux */ 172).Provider;
-	var createStore = __webpack_require__(/*! redux */ 179).createStore;
 	
-	var demoReducer = __webpack_require__(/*! ./reducers/demoReducer */ 199);
-	var App = __webpack_require__(/*! ./components/app.jsx */ 200);
+	var redux = __webpack_require__(/*! redux */ 179);
+	var createStore = redux.createStore;
+	var combineReducers = redux.combineReducers;
+	var applyMiddleware = redux.applyMiddleware;
 	
-	var store = createStore(demoReducer);
+	var thunk = __webpack_require__(/*! redux-thunk */ 203).default;
 	
+	var demoReducer = __webpack_require__(/*! ./reducers/demoReducer */ 204);
+	var App = __webpack_require__(/*! ./components/app.jsx */ 205);
+	
+	var fetchUsers = __webpack_require__(/*! ./actions/async */ 208).fetchUsers;
+	
+	var middleware = applyMiddleware(thunk);
+	var store = createStore(demoReducer, middleware);
+	
+	store.dispatch(fetchUsers());
 	ReactDOM.render(React.createElement(
 	     Provider,
 	     { store: store },
@@ -23629,37 +23639,95 @@
 /* 196 */,
 /* 197 */,
 /* 198 */,
-/* 199 */
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */
+/*!************************************!*\
+  !*** ./~/redux-thunk/lib/index.js ***!
+  \************************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	exports.__esModule = true;
+	function createThunkMiddleware(extraArgument) {
+	  return function (_ref) {
+	    var dispatch = _ref.dispatch;
+	    var getState = _ref.getState;
+	    return function (next) {
+	      return function (action) {
+	        if (typeof action === 'function') {
+	          return action(dispatch, getState, extraArgument);
+	        }
+	
+	        return next(action);
+	      };
+	    };
+	  };
+	}
+	
+	var thunk = createThunkMiddleware();
+	thunk.withExtraArgument = createThunkMiddleware;
+	
+	exports['default'] = thunk;
+
+/***/ },
+/* 204 */
 /*!*****************************************************!*\
-  !*** ./ClassWork/8/8.2/src/reducers/demoReducer.js ***!
+  !*** ./ClassWork/8/8.3/src/reducers/demoReducer.js ***!
   \*****************************************************/
 /***/ function(module, exports) {
 
 	'use strict';
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var demoReducer = function demoReducer() {
-	    var state = arguments.length <= 0 || arguments[0] === undefined ? false : arguments[0];
+	    var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
 	    var action = arguments[1];
 	
 	    switch (action.type) {
 	        case 'SHOW_LIST':
 	            {
-	                return state = true;
+	                return _extends({}, state, { flag: true });
+	                break;
+	            }
+	        case 'FETCH_USERS_START':
+	            {
+	                return _extends({}, state, { fetching: true, users: [] });
+	                break;
+	            }
+	        case 'FETCH_USERS_ERROR':
+	            {
+	                return _extends({}, state, { fetching: false, error: action.payloads, users: [] });
+	                break;
+	            }
+	        case 'RECEIVE_USERS':
+	            {
+	                console.log(action.payload);
+	                return _extends({}, state, {
+	                    fetching: false,
+	                    fetched: true,
+	                    users: action.payload
+	                });
 	                break;
 	            }
 	        default:
 	            {
 	                return state;
 	            }
+	
 	    }
 	};
 	
 	module.exports = demoReducer;
 
 /***/ },
-/* 200 */
+/* 205 */
 /*!************************************************!*\
-  !*** ./ClassWork/8/8.2/src/components/app.jsx ***!
+  !*** ./ClassWork/8/8.3/src/components/app.jsx ***!
   \************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
@@ -23677,9 +23745,9 @@
 	
 	var bindActionCreators = __webpack_require__(/*! redux */ 179).bindActionCreators;
 	var connect = __webpack_require__(/*! react-redux */ 172).connect;
-	var actions = __webpack_require__(/*! ../actions/actions */ 201);
-	var List = __webpack_require__(/*! ../components/list.jsx */ 202);
-	var users = [{ "id": 1, "first_name": "Carlos", "last_name": "Hughes", "email": "chughes0@stumbleupon.com", "gender": "Male" }, { "id": 2, "first_name": "Ruby", "last_name": "Carpenter", "email": "rcarpenter1@marketwatch.com", "gender": "Female" }, { "id": 3, "first_name": "Bruce", "last_name": "Smith", "email": "bsmith2@hp.com", "gender": "Male" }, { "id": 4, "first_name": "David", "last_name": "Howell", "email": "dhowell3@webnode.com", "gender": "Male" }, { "id": 5, "first_name": "Kathryn", "last_name": "Reynolds", "email": "kreynolds4@digg.com", "gender": "Female" }, { "id": 6, "first_name": "Ralph", "last_name": "Dunn", "email": "rdunn5@oakley.com", "gender": "Male" }, { "id": 7, "first_name": "John", "last_name": "Hughes", "email": "jhughes6@miitbeian.gov.cn", "gender": "Male" }, { "id": 8, "first_name": "Mary", "last_name": "Tucker", "email": "mtucker7@cloudflare.com", "gender": "Female" }, { "id": 9, "first_name": "Kenneth", "last_name": "Dunn", "email": "kdunn8@globo.com", "gender": "Male" }, { "id": 10, "first_name": "Juan", "last_name": "Stanley", "email": "jstanley9@engadget.com", "gender": "Male" }];
+	var actions = __webpack_require__(/*! ../actions/actions */ 206);
+	var List = __webpack_require__(/*! ../components/list.jsx */ 207);
+	var asyncActions = __webpack_require__(/*! ../actions/async */ 208);
 	
 	var App = function (_React$Component) {
 	    _inherits(App, _React$Component);
@@ -23702,7 +23770,7 @@
 	                        onClick: this.props.showList },
 	                    'Show List!'
 	                ),
-	                React.createElement(List, { users: users, showList: this.props.show })
+	                React.createElement(List, { users: this.props.users, showList: this.props.show })
 	            );
 	        }
 	    }]);
@@ -23713,7 +23781,8 @@
 	function mapStateToProps(state) {
 	
 	    return {
-	        show: state
+	        show: state.flag,
+	        users: state.users
 	    };
 	}
 	
@@ -23726,9 +23795,9 @@
 	module.exports = connect(mapStateToProps, matchDispatchToProps)(App);
 
 /***/ },
-/* 201 */
+/* 206 */
 /*!************************************************!*\
-  !*** ./ClassWork/8/8.2/src/actions/actions.js ***!
+  !*** ./ClassWork/8/8.3/src/actions/actions.js ***!
   \************************************************/
 /***/ function(module, exports) {
 
@@ -23746,9 +23815,9 @@
 	};
 
 /***/ },
-/* 202 */
+/* 207 */
 /*!*************************************************!*\
-  !*** ./ClassWork/8/8.2/src/components/list.jsx ***!
+  !*** ./ClassWork/8/8.3/src/components/list.jsx ***!
   \*************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
@@ -23803,6 +23872,56 @@
 	}(React.Component);
 	
 	module.exports = List;
+
+/***/ },
+/* 208 */
+/*!**********************************************!*\
+  !*** ./ClassWork/8/8.3/src/actions/async.js ***!
+  \**********************************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.fetchUsers = fetchUsers;
+	// ������ ��������
+	var requestUsers = exports.requestUsers = function requestUsers(state) {
+	    return {
+	        type: 'FETCH_USERS_START',
+	        payload: 'loading...'
+	    };
+	};
+	
+	// ��������� ������ ��� �������� ������
+	var fetchError = exports.fetchError = function fetchError(state) {
+	    return {
+	        type: 'FETCH_USERS_ERROR',
+	        payload: 'error'
+	    };
+	};
+	
+	//�������� ������ ��� �������� �� �������� 
+	var receiveUsers = exports.receiveUsers = function receiveUsers(users) {
+	    return {
+	        type: 'RECEIVE_USERS',
+	        payload: users
+	    };
+	};
+	
+	function fetchUsers() {
+	    return function (dispatch) {
+	        dispatch(requestUsers());
+	
+	        // �������� promise 
+	        return fetch('data.json').then(function (response) {
+	            return response.json();
+	        }).then(function (json) {
+	            return dispatch(receiveUsers(json));
+	        });
+	    };
+	}
 
 /***/ }
 /******/ ]);
