@@ -38,7 +38,10 @@ module.exports = {
         //"ClassWork/7/7.2/build/bundle": "./ClassWork/7/7.2/src/main.jsx",
         //"ClassWork/7/7.3/build/bundle": "./ClassWork/7/7.3/src/main.jsx",
         //"HomeWork/7/7.1/build/bundle": "./HomeWork/7/7.1/src/main.jsx",
-        "HomeWork/7/7.2/build/bundle": "./HomeWork/7/7.2/src/main.jsx",
+        //"HomeWork/7/7.2/build/bundle": "./HomeWork/7/7.2/src/main.jsx",
+        "ClassWork/8/8.1/build/bundle": "./ClassWork/8/8.1/src/main.jsx",
+        //"ClassWork/8/8.2/build/bundle": "./ClassWork/8/8.2/src/main.jsx",
+        //"ClassWork/8/8.3/build/bundle": "./ClassWork/8/8.3/src/main.jsx",
       
     },
     output: {
