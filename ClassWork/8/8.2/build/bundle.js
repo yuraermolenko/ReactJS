@@ -43,7 +43,7 @@
 /******/ ([
 /* 0 */
 /*!**************************************!*\
-  !*** ./ClassWork/8/8.1/src/main.jsx ***!
+  !*** ./ClassWork/8/8.2/src/main.jsx ***!
   \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
@@ -52,14 +52,17 @@
 	var React = __webpack_require__(/*! react */ 1);
 	var ReactDOM = __webpack_require__(/*! react-dom */ 34);
 	
+	// Provider
 	var Provider = __webpack_require__(/*! react-redux */ 172).Provider;
 	var createStore = __webpack_require__(/*! redux */ 179).createStore;
 	
-	var myReducer = __webpack_require__(/*! ./reducers/myReducer */ 196);
-	var App = __webpack_require__(/*! ./components/app.jsx */ 197);
+	var demoReducer = __webpack_require__(/*! ./reducers/demoReducer */ 199);
+	var App = __webpack_require__(/*! ./components/app.jsx */ 200);
 	
-	var store = createStore(myReducer);
+	var store = createStore(demoReducer);
 	
+	// Для совместного использования React и Redux следует подуючить спецальный компонент react-redux Provider. 
+	// Это сделает экземпляр хранилища доступным для всех компонентов, которые располагаются в компоненте Provider. 
 	ReactDOM.render(React.createElement(
 	     Provider,
 	     { store: store },
@@ -23626,22 +23629,25 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 3)))
 
 /***/ },
-/* 196 */
-/*!***************************************************!*\
-  !*** ./ClassWork/8/8.1/src/reducers/myReducer.js ***!
-  \***************************************************/
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */
+/*!*****************************************************!*\
+  !*** ./ClassWork/8/8.2/src/reducers/demoReducer.js ***!
+  \*****************************************************/
 /***/ function(module, exports) {
 
 	'use strict';
 	
-	var myReducer = function myReducer() {
-	    var state = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
+	var demoReducer = function demoReducer() {
+	    var state = arguments.length <= 0 || arguments[0] === undefined ? false : arguments[0];
 	    var action = arguments[1];
 	
 	    switch (action.type) {
-	        case 'CHANGE_TEXT':
+	        case 'SHOW_LIST':
 	            {
-	                return action.payload;
+	                return state = true;
 	                break;
 	            }
 	        default:
@@ -23651,12 +23657,12 @@
 	    }
 	};
 	
-	module.exports = myReducer;
+	module.exports = demoReducer;
 
 /***/ },
-/* 197 */
+/* 200 */
 /*!************************************************!*\
-  !*** ./ClassWork/8/8.1/src/components/app.jsx ***!
+  !*** ./ClassWork/8/8.2/src/components/app.jsx ***!
   \************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
@@ -23674,38 +23680,32 @@
 	
 	var bindActionCreators = __webpack_require__(/*! redux */ 179).bindActionCreators;
 	var connect = __webpack_require__(/*! react-redux */ 172).connect;
-	var actions = __webpack_require__(/*! ../actions/actions */ 198);
+	var actions = __webpack_require__(/*! ../actions/actions */ 201);
+	var List = __webpack_require__(/*! ../components/list.jsx */ 202);
+	var users = [{ "id": 1, "first_name": "Carlos", "last_name": "Hughes", "email": "chughes0@stumbleupon.com", "gender": "Male" }, { "id": 2, "first_name": "Ruby", "last_name": "Carpenter", "email": "rcarpenter1@marketwatch.com", "gender": "Female" }, { "id": 3, "first_name": "Bruce", "last_name": "Smith", "email": "bsmith2@hp.com", "gender": "Male" }, { "id": 4, "first_name": "David", "last_name": "Howell", "email": "dhowell3@webnode.com", "gender": "Male" }, { "id": 5, "first_name": "Kathryn", "last_name": "Reynolds", "email": "kreynolds4@digg.com", "gender": "Female" }, { "id": 6, "first_name": "Ralph", "last_name": "Dunn", "email": "rdunn5@oakley.com", "gender": "Male" }, { "id": 7, "first_name": "John", "last_name": "Hughes", "email": "jhughes6@miitbeian.gov.cn", "gender": "Male" }, { "id": 8, "first_name": "Mary", "last_name": "Tucker", "email": "mtucker7@cloudflare.com", "gender": "Female" }, { "id": 9, "first_name": "Kenneth", "last_name": "Dunn", "email": "kdunn8@globo.com", "gender": "Male" }, { "id": 10, "first_name": "Juan", "last_name": "Stanley", "email": "jstanley9@engadget.com", "gender": "Male" }];
 	
 	var App = function (_React$Component) {
 	    _inherits(App, _React$Component);
 	
-	    function App(props) {
+	    function App() {
 	        _classCallCheck(this, App);
 	
-	        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
-	
-	        _this.inputHandler = _this.inputHandler.bind(_this);
-	        return _this;
+	        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
 	    }
 	
 	    _createClass(App, [{
-	        key: 'inputHandler',
-	        value: function inputHandler(e) {
-	            this.props.pushText(e.target.value);
-	        }
-	    }, {
 	        key: 'render',
 	        value: function render() {
-	
 	            return React.createElement(
 	                'div',
 	                { className: 'panell well' },
-	                React.createElement('input', { id: 'text', type: 'text', onInput: this.inputHandler }),
 	                React.createElement(
-	                    'h1',
-	                    null,
-	                    this.props.text
-	                )
+	                    'button',
+	                    { className: 'btn-md btn btn-warning',
+	                        onClick: this.props.showList },
+	                    'Show List!'
+	                ),
+	                React.createElement(List, { users: users, showList: this.props.show })
 	            );
 	        }
 	    }]);
@@ -23716,22 +23716,22 @@
 	function mapStateToProps(state) {
 	
 	    return {
-	        text: state
+	        show: state
 	    };
 	}
 	
 	function matchDispatchToProps(dispatch) {
 	    return bindActionCreators({
-	        pushText: actions.changeText
+	        showList: actions.showList
 	    }, dispatch);
 	}
 	
 	module.exports = connect(mapStateToProps, matchDispatchToProps)(App);
 
 /***/ },
-/* 198 */
+/* 201 */
 /*!************************************************!*\
-  !*** ./ClassWork/8/8.1/src/actions/actions.js ***!
+  !*** ./ClassWork/8/8.2/src/actions/actions.js ***!
   \************************************************/
 /***/ function(module, exports) {
 
@@ -23740,12 +23740,72 @@
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	var changeText = exports.changeText = function changeText(text) {
+	var showList = exports.showList = function showList() {
+	
 	    return {
-	        type: 'CHANGE_TEXT',
-	        payload: text
+	        type: 'SHOW_LIST'
+	
 	    };
 	};
+
+/***/ },
+/* 202 */
+/*!*************************************************!*\
+  !*** ./ClassWork/8/8.2/src/components/list.jsx ***!
+  \*************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var React = __webpack_require__(/*! react */ 1);
+	
+	var List = function (_React$Component) {
+	    _inherits(List, _React$Component);
+	
+	    function List(props) {
+	        _classCallCheck(this, List);
+	
+	        return _possibleConstructorReturn(this, (List.__proto__ || Object.getPrototypeOf(List)).call(this, props));
+	    }
+	
+	    _createClass(List, [{
+	        key: 'render',
+	        value: function render() {
+	
+	            return React.createElement(
+	                'ul',
+	                null,
+	                this.props.showList ? this.props.users.map(function (user, index) {
+	                    return React.createElement(
+	                        'li',
+	                        { key: index },
+	                        user.id,
+	                        ' ',
+	                        user.first_name,
+	                        ' ',
+	                        user.last_name,
+	                        ' ',
+	                        user.email,
+	                        ' ',
+	                        user.gender
+	                    );
+	                }) : ''
+	            );
+	        }
+	    }]);
+	
+	    return List;
+	}(React.Component);
+	
+	module.exports = List;
 
 /***/ }
 /******/ ]);
